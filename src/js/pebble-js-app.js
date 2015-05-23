@@ -76,7 +76,7 @@ Pebble.addEventListener ('appmessage',
 Pebble.addEventListener ('showConfiguration',
                          function (e) {
                              // Show config page
-                             Pebble.openURL (base_url + '/config-page.html');
+                             Pebble.openURL (base_url + '/index.html');
                          });
 
 Pebble.addEventListener ('webviewclosed',
