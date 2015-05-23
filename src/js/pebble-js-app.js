@@ -8,12 +8,14 @@ var xhrRequest = function (url, type, callback) {
 };
 
 var base_url = 'http://hackthings-tmi.herokuapp.com'
+var stopID = 4016
+var bus = 15
 
 function locationSuccess (pos) {
     // Construct URL
     //var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
     //    pos.coords.latitude + '&lon=' + pos.coords.longitude;
-    var url = base_url + '/advice?stop=4016&bus=15'
+    var url = base_url + '/advice?stop=' + stopID '&bus=' + bus
 
     // Send request to OpenWeatherMap
     xhrRequest (url, 'GET',
@@ -82,5 +84,6 @@ Pebble.addEventListener ('showConfiguration',
 Pebble.addEventListener ('webviewclosed',
                          function (e) {
                              var configuration = JSON.parse (decodeURIComponent (e.response));
+                             stopID = configuration.stopID || stopID
                              console.log ('Configuration window returned: ', JSON.stringify (configuration));
                          });
