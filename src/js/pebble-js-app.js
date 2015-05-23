@@ -7,15 +7,14 @@ var xhrRequest = function (url, type, callback) {
     xhr.send ();
 };
 
-var base_url = 'http://hackthings-tmi.herokuapp.com'
-var stopID = 4016
-var bus = 15
-
+var base_url = 'http://hackthings-tmi.herokuapp.com';
 function locationSuccess (pos) {
     // Construct URL
     //var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
     //    pos.coords.latitude + '&lon=' + pos.coords.longitude;
-    var url = base_url + '/advice?stop=' + stopID + '&bus=' + bus
+    var stopID = localStorage.getItem ('stopID') || 4016;
+    var bus = localStorage.getItem ('bus') || 15;
+    var url = base_url + '/advice?stop=' + stopID + '&bus=' + bus;
 
     // Send request to OpenWeatherMap
     xhrRequest (url, 'GET',
@@ -84,6 +83,9 @@ Pebble.addEventListener ('showConfiguration',
 Pebble.addEventListener ('webviewclosed',
                          function (e) {
                              var configuration = JSON.parse (decodeURIComponent (e.response));
-                             stopID = configuration.stopID || stopID
-                             console.log ('Configuration window returned: ', JSON.stringify (configuration));
+                             var stopID = configuration.stopID;
+                             var bus = configuration.bus;
+                             if (stopID) { localStorage.setItem ('stopID', stopID); }
+                             if (bus) { localStorage.setItem ('bus', bus); }
+                             getWeather ();
                          });
