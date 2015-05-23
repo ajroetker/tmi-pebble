@@ -1,5 +1,5 @@
 {
-  "uuid": "a173b460-2ca7-4723-b5b5-07c82e12d529",
+  "uuid": "16ccc394-0178-11e5-ba65-28cfe94ebecb",
   "shortName": "tmi",
   "longName": "tmi",
   "companyName": "flannl",
@@ -10,11 +10,12 @@
     "watchface": true
   },
   "appKeys": {
-    "KEY_TEMPERATURE": 0,
+    "KEY_ARRIVALS": 0,
     "KEY_CONDITIONS": 1
   },
   "capabilities":
-    [ "location" ],
+    [ "location",
+      "configurable" ],
   "resources": {
     "media": [
       {

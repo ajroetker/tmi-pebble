@@ -10,8 +10,9 @@ var xhrRequest = function (url, type, callback) {
 
 function locationSuccess (pos) {
     // Construct URL
-    var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
-        pos.coords.latitude + '&lon=' + pos.coords.longitude;
+    //var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
+    //    pos.coords.latitude + '&lon=' + pos.coords.longitude;
+    var url = 'http://hackthings-tmi.herokuapp.com/advice?stop=4016&bus=15'
 
     // Send request to OpenWeatherMap
     xhrRequest (url, 'GET',
@@ -19,17 +20,17 @@ function locationSuccess (pos) {
                     // responseText contains a JSON object with weather info
                     var json = JSON.parse (responseText);
 
-                    // Temperature in Kelvin requires adjustment
-                    var temperature = Math.round (json.main.temp - 273.15);
-                    console.log ("Temperature is " + temperature);
+                    // Arrivals
+                    var arrivals = json.arrivals [0];
+                    console.log ("Arrivals is " + arrivals);
 
                     // Conditions
-                    var conditions = json.weather [0].main;
+                    var conditions = json.weather;
                     console.log ("Conditions are " + conditions);
 
                     // Assemble dictionary using our keys
                     var dictionary = {
-                        "KEY_TEMPERATURE": temperature,
+                        "KEY_ARRIVALS": arrivals,
                         "KEY_CONDITIONS": conditions
                     };
 
