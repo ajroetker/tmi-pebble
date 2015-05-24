@@ -27,7 +27,8 @@ function locationSuccess (pos) {
                     console.log ("Arrivals is " + arrivals);
 
                     // Conditions
-                    var conditions = json.weather;
+                    // Trim the string to fit the screen
+                    var conditions = json.weather.substring (0,6);
                     console.log ("Conditions are " + conditions);
 
                     // Assemble dictionary using our keys
